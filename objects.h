@@ -1,29 +1,40 @@
 #ifndef OBJECTS_H
 #define OBJECTS_H
 
+#include "common.h"
+#include <iostream>
+#include <vector>
+//#include "player.h"
+
 
 class objects {
-private:
-    int x;
-    int y;
-    int rotation;       // rotation in degrees
-
 public:
-    objects(int x, int y, int rotation);
+    double x = 0;
+    double y = 0;
+    int rotation = 0;       // rotation in degrees
+    double radius = 0;
 
-    virtual void move() = 0;
+    virtual void move() {};
+
+    double get_x() const;
+
+    double get_y() const;
+
+    double get_radius() const;
 };
 
-class player : public objects {
-private:
-
+class flying_object : public objects {
+public:
+    double x_vel = 0;
+    double y_vel = 0;
 };
 
+class bullet : public flying_object {
+public:
+    bullet(double x, double y, double x_vel, double y_vel);
 
-#define PLAYER_STEP 5
-
-
-#define rotation_shorten(x) (x<0?x+360:(x>=360?x-360:x))
+    void move() override;
+};
 
 
 #endif

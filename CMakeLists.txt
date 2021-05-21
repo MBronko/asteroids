@@ -3,4 +3,4 @@ project(asteroids)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(asteroids main.cpp objects.cpp objects.h model.cpp model.h view.cpp view.h controller.cpp controller.h)
+add_executable(asteroids main.cpp objects.cpp objects.h model.cpp model.h view.cpp view.h controller.cpp controller.h player.cpp player.h common.h utils.cpp utils.h asteroid.cpp asteroid.h)
