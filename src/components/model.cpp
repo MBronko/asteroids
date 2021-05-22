@@ -9,6 +9,7 @@ void Model::check_collides() {
     for (auto &asteroid : asteroids) {
         if (objects_overlap(player.get_pos(), player.get_radius(), asteroid.get_pos(), asteroid.get_radius())) {
             game_state = ENDED_LOSE;
+            return;
         }
     }
     for (auto bullet = bullets.end(); bullet != bullets.begin(); bullet--) {
@@ -22,7 +23,7 @@ void Model::check_collides() {
                 continue;
             }
             if (objects_overlap(bullet->get_pos(), bullet->get_radius(), asteroid->get_pos(), asteroid->get_radius())) {
-                auto new_asteroids = asteroid->destroy();
+                auto new_asteroids = asteroid->create_new_objects();
                 asteroids.erase(asteroid);
                 asteroids.insert(asteroids.end(), new_asteroids.begin(), new_asteroids.end());
             }
@@ -44,6 +45,29 @@ void Model::move_all() {
     check_collides();
 }
 
+void Model::create_asteroid() {
+    position new_pos = {(double) (random() % WIDTH), (double) (random() % HEIGHT)};
+    position new_vel = {};
+    new_vel.x = (double) (MIN_ASTEROID_VELOCITY + random() % (MAX_ASTEROID_VELOCITY - MIN_ASTEROID_VELOCITY));
+    new_vel.y = (double) (MIN_ASTEROID_VELOCITY + random() % (MAX_ASTEROID_VELOCITY - MIN_ASTEROID_VELOCITY));
+
+//    switch (random() % 3) {
+//        case 0:
+////            Asteroid *test = new Small_asteroid(new_pos, new_vel);
+////            asteroids.emplace_back(test);
+////
+////            asteroids.emplace_back(Small_asteroid(new_pos, new_vel));
+//            break;
+//        case 1:
+////            asteroids.emplace_back(Medium_asteroid(new_pos, new_vel));
+//            break;
+//        default:
+////            asteroids.emplace_back(Big_asteroid(new_pos, new_vel));
+//            break;
+//    }
+}
+
+
 std::vector<Bullet> &Model::get_bullets() {
     return bullets;
 }
@@ -59,6 +83,5 @@ Player &Model::get_player() {
 GameState Model::get_game_state() {
     return game_state;
 }
-
 
 

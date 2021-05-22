@@ -11,28 +11,28 @@ class Asteroid : public Flying_object {
 public:
     Asteroid(position pos, position velocity);
 
-    virtual std::vector<Asteroid> destroy() = 0;
+    virtual std::vector<Asteroid> create_new_objects() = 0;
 };
 
 class Big_asteroid : public Asteroid {
 public:
     Big_asteroid(position pos, position velocity);
 
-    std::vector<Asteroid> destroy() override;
+    std::vector<Asteroid> create_new_objects();
 };
 
 class Medium_asteroid : public Asteroid {
 public:
     Medium_asteroid(position pos, position velocity);
 
-    std::vector<Asteroid> destroy() override;
+    std::vector<Asteroid> create_new_objects();
 };
 
 class Small_asteroid : public Asteroid {
 public:
     Small_asteroid(position pos, position velocity);
 
-    std::vector<Asteroid> destroy() override;
+    std::vector<Asteroid> create_new_objects();
 };
 
 #endif

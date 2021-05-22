@@ -12,8 +12,8 @@
 #define ROTATION_LEFT 180
 #define ROTATION_DOWN 270
 
-#define ROTATE_LEFT 1
-#define ROTATE_RIGHT -1
+#define DIRECTION_LEFT 1
+#define DIRECTION_RIGHT -1
 
 #define ROTATION_SPAN 2
 #define PLAYER_STEP 5
@@ -24,9 +24,9 @@
 #define MEDIUM_ASTEROID_RADIUS 20
 #define SMALL_ASTEROID_RADIUS 10
 
-#define shorten_rotation(x) (x<0?x+360:(x>=360?x-360:x))
-
 #define BULLET_VELOCITY 5
+#define MIN_ASTEROID_VELOCITY 1
+#define MAX_ASTEROID_VELOCITY 5
 
 struct position{
     double x;

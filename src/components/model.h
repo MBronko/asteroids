@@ -26,6 +26,8 @@ public:
 
     void move_all();
 
+    void create_asteroid();
+
     std::vector<Bullet> &get_bullets();
 
     std::vector<Asteroid> &get_asteroids();

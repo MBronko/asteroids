@@ -28,6 +28,11 @@ void Flying_object::move() {
     pos.y += velocity.y;
 }
 
+Flying_object::Flying_object() {
+    rotation = (int)(random() % 360);
+}
+
+
 Bullet::Bullet(position pos, position velocity) {
     this->pos = pos;
     this->velocity = velocity;

@@ -30,6 +30,8 @@ class Flying_object : public Object {
 public:
     position velocity = {};
 
+    Flying_object();
+
     void move() override;
 };
 

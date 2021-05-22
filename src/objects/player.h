@@ -3,12 +3,12 @@
 
 #include <iostream>
 #include <vector>
-#include "../common.h"
-
 #include "objects.h"
 
+//#include "../common.h"
 
-class Player : public objects {
+
+class Player : public Object {
 private:
     bool alive = true;
 
@@ -19,7 +19,7 @@ public:
 
     void rotate(int dir);
 
-    void shoot(std::vector<bullet> &bullets);
+    void shoot(std::vector<Bullet> &bullets);
 };
 
 
