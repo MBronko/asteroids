@@ -3,31 +3,32 @@
 
 #include <iostream>
 #include <vector>
-#include "player.h"
+#include "../objects/player.h"
+#include "../objects/asteroid.h"
 
 enum GameState {
     MENU, RUNNING, ENDED_LOSE, ENDED_WIN
 };
 
-class model {
+class Model {
 private:
     GameState game_state = MENU;
     int score = 0;
     Player player;
-    std::vector<bullet> bullets = {};
-    std::vector<flying_object> asteroids = {};
+    std::vector<Bullet> bullets = {};
+    std::vector<Asteroid> asteroids = {};
 
 
 public:
-    model();
+    Model();
 
     void check_collides();
 
     void move_all();
 
-    std::vector<bullet> &get_bullets();
+    std::vector<Bullet> &get_bullets();
 
-    std::vector<flying_object> &get_asteroids();
+    std::vector<Asteroid> &get_asteroids();
 
     Player &get_player();
 

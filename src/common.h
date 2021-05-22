@@ -28,5 +28,9 @@
 
 #define BULLET_VELOCITY 5
 
+struct position{
+    double x;
+    double y;
+};
 
 #endif
