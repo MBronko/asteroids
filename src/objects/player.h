@@ -3,12 +3,12 @@
 
 #include <iostream>
 #include <vector>
-#include "objects.h"
+#include "entity.h"
 
 //#include "../common.h"
 
 
-class Player : public Object {
+class Player : public Entity {
 private:
     bool alive = true;
 

@@ -1,34 +1,34 @@
-#include "objects.h"
+#include "entity.h"
 
-bool Object::out_of_bounds() const {
+bool Entity::out_of_bounds() const {
     double x = pos.x;
     double y = pos.y;
 
     return x < 0 || x > WIDTH || y < 0 || x > HEIGHT;
 }
 
-double Object::get_x() const {
+double Entity::get_x() const {
     return pos.x;
 }
 
-double Object::get_y() const {
+double Entity::get_y() const {
     return pos.y;
 }
 
-position Object::get_pos() const {
+position Entity::get_pos() const {
     return pos;
 }
 
-double Object::get_radius() const {
+double Entity::get_radius() const {
     return radius;
 }
 
-void Flying_object::move() {
+void Flying_entity::move() {
     pos.x += velocity.x;
     pos.y += velocity.y;
 }
 
-Flying_object::Flying_object() {
+Flying_entity::Flying_entity() {
     rotation = (int)(random() % 360);
 }
 

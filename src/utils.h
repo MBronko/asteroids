@@ -1,7 +1,7 @@
 #ifndef ASTEROIDS_UTILS_H
 #define ASTEROIDS_UTILS_H
 
-#include "objects/objects.h"
+#include "objects/entity.h"
 
 double to_radians(double degree);
 

@@ -4,10 +4,8 @@
 #include "../common.h"
 #include <iostream>
 #include <vector>
-//#include "player.h"
 
-
-class Object {
+class Entity {
 public:
     position pos = {};
     double rotation = 0;       // rotation in degrees
@@ -26,16 +24,16 @@ public:
     double get_radius() const;
 };
 
-class Flying_object : public Object {
+class Flying_entity : public Entity {
 public:
     position velocity = {};
 
-    Flying_object();
+    Flying_entity();
 
     void move() override;
 };
 
-class Bullet : public Flying_object {
+class Bullet : public Flying_entity {
 public:
     Bullet(position pos, position velocity);
 };

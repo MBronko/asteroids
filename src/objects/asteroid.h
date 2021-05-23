@@ -4,10 +4,10 @@
 #include <iostream>
 #include <vector>
 #include "../common.h"
-#include "objects.h"
+#include "entity.h"
 
 
-class Asteroid : public Flying_object {
+class Asteroid : public Flying_entity {
 public:
     Asteroid(position pos, position velocity);
 

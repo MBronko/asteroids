@@ -53,6 +53,7 @@ void Model::create_asteroid() {
 
 //    switch (random() % 3) {
 //        case 0:
+//          use unique pointers !!!!! todo
 ////            Asteroid *test = new Small_asteroid(new_pos, new_vel);
 ////            asteroids.emplace_back(test);
 ////

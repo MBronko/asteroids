@@ -2,7 +2,7 @@
 #include "ctime"
 #include <random>
 
-Asteroid::Asteroid(position pos, position velocity) : Flying_object() {
+Asteroid::Asteroid(position pos, position velocity) : Flying_entity() {
     this->pos = pos;
     this->velocity = velocity;
 }
