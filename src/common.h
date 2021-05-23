@@ -4,8 +4,10 @@
 #define WIDTH 1000
 #define HEIGHT 1000
 
-#define WIDTH_CENTER (WIDTH/2)
-#define HEIGHT_CENTER (HEIGHT/2)
+#define WIDTH_CENTER (WIDTH*1.0/2)
+#define HEIGHT_CENTER (HEIGHT*1.0/2)
+
+#define SPAWN_AREA_SIZE 200
 
 #define ROTATION_RIGHT 0
 #define ROTATION_UP 90
@@ -27,6 +29,12 @@
 #define BULLET_VELOCITY 5
 #define MIN_ASTEROID_VELOCITY 1
 #define MAX_ASTEROID_VELOCITY 5
+
+// asteroids created aster destroying larger one
+#define NEW_MEDIUM_ASTEROIDS 2
+#define NEW_SMALL_ASTEROIDS 3
+
+#define NEW_ASTEROID_DEGREE_RANGE 30
 
 struct position{
     double x;

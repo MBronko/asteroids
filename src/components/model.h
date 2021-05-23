@@ -2,6 +2,7 @@
 #define ASTEROIDS_MODEL_H
 
 #include <iostream>
+#include <memory>
 #include <vector>
 #include "../objects/player.h"
 #include "../objects/asteroid.h"
@@ -16,7 +17,7 @@ private:
     int score = 0;
     Player player;
     std::vector<Bullet> bullets = {};
-    std::vector<Asteroid> asteroids = {};
+    std::vector<std::shared_ptr<Asteroid>> asteroids = {};
 
 
 public:
@@ -30,7 +31,7 @@ public:
 
     std::vector<Bullet> &get_bullets();
 
-    std::vector<Asteroid> &get_asteroids();
+    std::vector<std::shared_ptr<Asteroid>> &get_asteroids();
 
     Player &get_player();
 

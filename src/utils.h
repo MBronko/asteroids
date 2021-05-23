@@ -5,9 +5,15 @@
 
 double to_radians(double degree);
 
+double to_degree(double radian);
+
 bool objects_overlap(position pos1, double radius1, position pos2, double radius2);
 
-position rotate_pos(position pos);
+position rotate_pos(position pos, double degree);
+
+double random_range(double min, double max);
+
+position velocity_towards_center(position pos);
 
 #define shorten_rotation(x) (x<0?x+360:(x>=360?x-360:x))
 
