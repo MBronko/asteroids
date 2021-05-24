@@ -2,7 +2,9 @@
 #include "../utils.h"
 
 Model::Model() {
-    player = Player();
+    sf::Texture texture;
+    texture.loadFromFile(TEXTURE_PATH + "player.png");
+    player = Player(texture);
 }
 
 void Model::check_collides() {
@@ -33,8 +35,6 @@ void Model::check_collides() {
 }
 
 void Model::move_all() {
-    player.move();
-
     for (auto &asteroid : asteroids) {
         asteroid->move();
     }
@@ -44,6 +44,10 @@ void Model::move_all() {
     }
 
     check_collides();
+}
+
+void Model::move_player() {
+    player.move();
 }
 
 void Model::create_asteroid() {

@@ -38,3 +38,7 @@ Bullet::Bullet(position pos, position velocity) {
     this->velocity = velocity;
     this->radius = BULLET_RADIUS;
 }
+
+void Bullet::draw(sf::RenderWindow *win) {
+
+}

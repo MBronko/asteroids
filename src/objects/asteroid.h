@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include "SFML/Graphics.hpp"
 #include "../common.h"
 #include "entity.h"
 
@@ -16,10 +17,14 @@ public:
 };
 
 class Big_asteroid : public Asteroid {
+private:
+
 public:
     Big_asteroid(position pos, position velocity);
 
     std::vector<std::shared_ptr<Asteroid>> create_new_objects() override;
+
+    void draw(sf::RenderWindow *win) override;
 };
 
 class Medium_asteroid : public Asteroid {
@@ -27,13 +32,19 @@ public:
     Medium_asteroid(position pos, position velocity);
 
     std::vector<std::shared_ptr<Asteroid>> create_new_objects() override;
+
+    void draw(sf::RenderWindow *win) override;
 };
 
 class Small_asteroid : public Asteroid {
+private:
+
 public:
     Small_asteroid(position pos, position velocity);
 
     std::vector<std::shared_ptr<Asteroid>> create_new_objects() override;
+
+    void draw(sf::RenderWindow *win) override;
 };
 
 #endif

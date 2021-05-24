@@ -12,12 +12,16 @@ Asteroid::Asteroid(position pos, position velocity) : Flying_entity() {
 
 Big_asteroid::Big_asteroid(position pos, position velocity) : Asteroid(pos, velocity) {
     this->radius = BIG_ASTEROID_RADIUS;
+
+    sf::Texture texture;
+    texture.loadFromFile(TEXTURE_PATH + "big_asteroid.png");
+    sprite.setTexture(texture);
 }
 
 std::vector<std::shared_ptr<Asteroid>> Big_asteroid::create_new_objects() {
     std::vector<std::shared_ptr<Asteroid>> res = {};
 
-    for (int i = 0; i < NEW_MEDIUM_ASTEROIDS; i++){
+    for (int i = 0; i < NEW_MEDIUM_ASTEROIDS; i++) {
         position new_vel = {};
         new_vel.x = random_range(-MAX_ASTEROID_VELOCITY, MAX_ASTEROID_VELOCITY);
         new_vel.y = random_range(-MAX_ASTEROID_VELOCITY, MAX_ASTEROID_VELOCITY);
@@ -28,14 +32,22 @@ std::vector<std::shared_ptr<Asteroid>> Big_asteroid::create_new_objects() {
     return res;
 }
 
+void Big_asteroid::draw(sf::RenderWindow *win) {
+
+}
+
 Medium_asteroid::Medium_asteroid(position pos, position velocity) : Asteroid(pos, velocity) {
     this->radius = MEDIUM_ASTEROID_RADIUS;
+
+    sf::Texture texture;
+    texture.loadFromFile(TEXTURE_PATH + "medium_asteroid.png");
+    sprite.setTexture(texture);
 }
 
 std::vector<std::shared_ptr<Asteroid>> Medium_asteroid::create_new_objects() {
     std::vector<std::shared_ptr<Asteroid>> res = {};
 
-    for (int i = 0; i < NEW_SMALL_ASTEROIDS; i++){
+    for (int i = 0; i < NEW_SMALL_ASTEROIDS; i++) {
         position new_vel = {};
         new_vel.x = random_range(-MAX_ASTEROID_VELOCITY, MAX_ASTEROID_VELOCITY);
         new_vel.y = random_range(-MAX_ASTEROID_VELOCITY, MAX_ASTEROID_VELOCITY);
@@ -46,10 +58,22 @@ std::vector<std::shared_ptr<Asteroid>> Medium_asteroid::create_new_objects() {
     return res;
 }
 
+void Medium_asteroid::draw(sf::RenderWindow *win) {
+
+}
+
 Small_asteroid::Small_asteroid(position pos, position velocity) : Asteroid(pos, velocity) {
     this->radius = SMALL_ASTEROID_RADIUS;
+
+    sf::Texture texture;
+    texture.loadFromFile(TEXTURE_PATH + "small_asteroid.png");
+    sprite.setTexture(texture);
 }
 
 std::vector<std::shared_ptr<Asteroid>> Small_asteroid::create_new_objects() {
     return std::vector<std::shared_ptr<Asteroid>>();
+}
+
+void Small_asteroid::draw(sf::RenderWindow *win) {
+
 }

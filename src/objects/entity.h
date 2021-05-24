@@ -4,12 +4,14 @@
 #include "../common.h"
 #include <iostream>
 #include <vector>
+#include "SFML/Graphics.hpp"
 
 class Entity {
 public:
     position pos = {};
     double rotation = 0;       // rotation in degrees
     double radius = 0;
+    sf::Sprite sprite;
 
     virtual void move() = 0;
 
@@ -22,6 +24,8 @@ public:
     position get_pos() const;
 
     double get_radius() const;
+
+    virtual void draw(sf::RenderWindow *win) = 0;
 };
 
 class Flying_entity : public Entity {
@@ -36,6 +40,8 @@ public:
 class Bullet : public Flying_entity {
 public:
     Bullet(position pos, position velocity);
+
+    void draw(sf::RenderWindow *win) override;
 };
 
 

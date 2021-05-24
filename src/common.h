@@ -10,9 +10,9 @@
 #define SPAWN_AREA_SIZE 200
 
 #define ROTATION_RIGHT 0
-#define ROTATION_UP 90
+#define ROTATION_UP 270
 #define ROTATION_LEFT 180
-#define ROTATION_DOWN 270
+#define ROTATION_DOWN 90
 
 #define DIRECTION_LEFT 1
 #define DIRECTION_RIGHT -1
@@ -35,6 +35,13 @@
 #define NEW_SMALL_ASTEROIDS 3
 
 #define NEW_ASTEROID_DEGREE_RANGE 30
+
+#define TEXTURE_SIZE 50
+#define TEXTURE_CENTER TEXTURE_SIZE*1.0/2
+
+#define top_left_corner(pos) pos.x-TEXTURE_CENTER, pos.y-TEXTURE_CENTER
+
+#define TEXTURE_PATH (std::string)"../src/textures/"
 
 struct position{
     double x;

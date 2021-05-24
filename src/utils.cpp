@@ -23,7 +23,7 @@ position rotate_pos(position pos, double degree){
     double rad = to_radians(degree);
 
     double x = pos.x * std::cos(rad) - pos.y * std::sin(rad);
-    double y = - pos.y * std::cos(rad) - pos.x * std::sin(rad);
+    double y = pos.y * std::cos(rad) + pos.x * std::sin(rad);
 
     return {x, y};
 }
