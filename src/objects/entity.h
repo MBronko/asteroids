@@ -32,6 +32,8 @@ class Flying_entity : public Entity {
 public:
     position velocity = {};
 
+    double rotation_span = 0;
+
     Flying_entity();
 
     void move() override;

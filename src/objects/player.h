@@ -5,12 +5,9 @@
 #include <vector>
 #include "entity.h"
 
-//#include "../common.h"
-
 
 class Player : public Entity {
 private:
-    bool alive = true;
 
 public:
     Player();

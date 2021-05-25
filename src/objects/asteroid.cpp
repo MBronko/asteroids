@@ -1,7 +1,6 @@
 #include "asteroid.h"
-#include <ctime>
-#include <random>
 #include <iostream>
+#include <random>
 #include <memory>
 #include "../utils.h"
 #include "../components/view.h"
@@ -9,6 +8,8 @@
 Asteroid::Asteroid(position pos, position velocity) : Flying_entity() {
     this->pos = pos;
     this->velocity = velocity;
+
+    rotation_span = signum(random_range(-5, 5)) * random_range(MIN_ASTEROID_ROTATION, MAX_ASTEROID_ROTATION);
 }
 
 Big_asteroid::Big_asteroid(position pos, position velocity) : Asteroid(pos, velocity) {
@@ -34,13 +35,6 @@ std::vector<Asteroid*> Big_asteroid::create_new_objects() {
     return res;
 }
 
-//void Big_asteroid::draw(sf::RenderWindow *win) {
-//    sprite.setPosition(top_left_corner(pos));
-//    sprite.setRotation((float)rotation);
-//
-//    win->draw(sprite);
-//}
-
 Medium_asteroid::Medium_asteroid(position pos, position velocity) : Asteroid(pos, velocity) {
     this->radius = MEDIUM_ASTEROID_RADIUS;
 
@@ -64,10 +58,6 @@ std::vector<Asteroid*> Medium_asteroid::create_new_objects() {
     return res;
 }
 
-//void Medium_asteroid::draw(sf::RenderWindow *win) {
-//
-//}
-
 Small_asteroid::Small_asteroid(position pos, position velocity) : Asteroid(pos, velocity) {
     this->radius = SMALL_ASTEROID_RADIUS;
 
@@ -78,7 +68,3 @@ std::vector<Asteroid*> Small_asteroid::create_new_objects() {
 //    std::vector<std::shared_ptr<Asteroid>> Small_asteroid::create_new_objects() {
     return std::vector<Asteroid*>();
 }
-
-//void Small_asteroid::draw(sf::RenderWindow *win) {
-//
-//}

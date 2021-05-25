@@ -1,6 +1,6 @@
+#include "player.h"
 #include "../common.h"
 #include "../utils.h"
-#include "player.h"
 #include "../components/view.h"
 
 Player::Player() {
@@ -23,7 +23,7 @@ void Player::move() {
 }
 
 void Player::rotate(int dir) {
-    rotation = shorten_rotation(rotation + ROTATION_SPAN * dir);
+    rotation = shorten_rotation(rotation + PLAYER_ROTATION_SPAN * dir);
 }
 
 void Player::shoot(std::vector<Bullet> &bullets) {

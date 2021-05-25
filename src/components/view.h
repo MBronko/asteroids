@@ -14,9 +14,6 @@ private:
     sf::RenderWindow *win;
 
 public:
-//    static sf::Texture *textures;
-    static sf::Texture texture;
-
     explicit View(Model &model);
 
     void draw();

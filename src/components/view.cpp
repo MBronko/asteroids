@@ -10,7 +10,7 @@ View::View(Model &model) : model(model) {
     win = new sf::RenderWindow();
     win->create(sf::VideoMode(WIDTH, HEIGHT), "Asteroids", sf::Style::Close | sf::Style::Titlebar);
 
-    win->setVerticalSyncEnabled(false);
+    win->setVerticalSyncEnabled(true);
     win->setFramerateLimit(FRAMERATE_LIMIT);
 
 }

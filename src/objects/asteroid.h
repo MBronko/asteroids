@@ -15,8 +15,6 @@ public:
 
     virtual std::vector<Asteroid*> create_new_objects() = 0;
 //    virtual std::vector<std::shared_ptr<Asteroid>> create_new_objects() = 0;
-
-
 };
 
 class Big_asteroid : public Asteroid {
@@ -27,8 +25,6 @@ public:
 
     std::vector<Asteroid*> create_new_objects() override;
 //    std::vector<std::shared_ptr<Asteroid>> create_new_objects() override;
-
-//    void draw(sf::RenderWindow *win) override;
 };
 
 class Medium_asteroid : public Asteroid {
@@ -37,8 +33,6 @@ public:
 
     std::vector<Asteroid*> create_new_objects() override;
 //    std::vector<std::shared_ptr<Asteroid>> create_new_objects() override;
-
-//    void draw(sf::RenderWindow *win) override;
 };
 
 class Small_asteroid : public Asteroid {
