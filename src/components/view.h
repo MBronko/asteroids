@@ -5,6 +5,7 @@
 #include "model.h"
 #include "../objects/asteroid.h"
 
+extern sf::Texture textures[5];
 
 class View {
 private:
@@ -13,6 +14,9 @@ private:
     sf::RenderWindow *win;
 
 public:
+//    static sf::Texture *textures;
+    static sf::Texture texture;
+
     explicit View(Model &model);
 
     void draw();

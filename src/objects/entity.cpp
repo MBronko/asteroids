@@ -1,5 +1,6 @@
 #include "entity.h"
-
+#include "../components/view.h"
+//
 bool Entity::out_of_bounds() const {
     double x = pos.x;
     double y = pos.y;
@@ -23,6 +24,14 @@ double Entity::get_radius() const {
     return radius;
 }
 
+void Entity::draw(sf::RenderWindow *win) {
+    sprite.setPosition(top_left_corner(pos));
+    sprite.setOrigin(TEXTURE_CENTER, TEXTURE_CENTER);
+    sprite.setRotation((float)rotation);
+
+    win->draw(sprite);
+}
+
 void Flying_entity::move() {
     pos.x += velocity.x;
     pos.y += velocity.y;
@@ -32,13 +41,10 @@ Flying_entity::Flying_entity() {
     rotation = (int)(random() % 360);
 }
 
-
 Bullet::Bullet(position pos, position velocity) {
     this->pos = pos;
     this->velocity = velocity;
     this->radius = BULLET_RADIUS;
-}
 
-void Bullet::draw(sf::RenderWindow *win) {
-
+    sprite.setTexture(textures[4]);
 }

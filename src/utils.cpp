@@ -18,6 +18,13 @@ bool objects_overlap(position pos1, double radius1, position pos2, double radius
 double random_range(double min, double max){
     return (double)(min + (int)random() % (int)(max - min));
 }
+//
+//bool out_of_bounds(position pos) {
+//    double x = pos.x;
+//    double y = pos.y;
+//
+//    return x < 0 || x > WIDTH || y < 0 || x > HEIGHT;
+//}
 
 position rotate_pos(position pos, double degree){
     double rad = to_radians(degree);
@@ -32,7 +39,8 @@ position velocity_towards_center(position pos){
     double x_off = WIDTH_CENTER - pos.x;
     double y_off = HEIGHT_CENTER - pos.y;
 
-    double new_rotation = 2 * M_PI - std::atan(y_off/x_off);
+//    double new_rotation = 2 * M_PI - std::atan(y_off/x_off);
+    double new_rotation = std::atan(y_off/x_off);
 
 //    position vel = {MAX_ASTEROID_VELOCITY, 0};
     position vel = {random_range(MIN_ASTEROID_VELOCITY, MAX_ASTEROID_VELOCITY), 0};

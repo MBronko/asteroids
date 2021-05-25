@@ -14,17 +14,17 @@
 #define ROTATION_LEFT 180
 #define ROTATION_DOWN 90
 
-#define DIRECTION_LEFT 1
-#define DIRECTION_RIGHT -1
+#define DIRECTION_LEFT -1
+#define DIRECTION_RIGHT 1
 
 #define ROTATION_SPAN 2
 #define PLAYER_STEP 5
 
 #define PLAYER_RADIUS 10
-#define BULLET_RADIUS 5
-#define BIG_ASTEROID_RADIUS 30
-#define MEDIUM_ASTEROID_RADIUS 20
-#define SMALL_ASTEROID_RADIUS 10
+#define BULLET_RADIUS 10
+#define BIG_ASTEROID_RADIUS 100
+#define MEDIUM_ASTEROID_RADIUS 70
+#define SMALL_ASTEROID_RADIUS 50
 
 #define BULLET_VELOCITY 5
 #define MIN_ASTEROID_VELOCITY 1
@@ -42,6 +42,7 @@
 #define top_left_corner(pos) pos.x-TEXTURE_CENTER, pos.y-TEXTURE_CENTER
 
 #define TEXTURE_PATH (std::string)"../src/textures/"
+#define FRAMERATE_LIMIT 50
 
 struct position{
     double x;

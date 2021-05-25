@@ -9,13 +9,43 @@
 int main() {
     srand(time(nullptr));
 
+    textures[0].loadFromFile(TEXTURE_PATH + "player.png");
+    textures[1].loadFromFile(TEXTURE_PATH + "big_asteroid.png");
+    textures[2].loadFromFile(TEXTURE_PATH + "medium_asteroid.png");
+    textures[3].loadFromFile(TEXTURE_PATH + "small_asteroid.png");
+    textures[4].loadFromFile(TEXTURE_PATH + "bullet.png");
+
     Model model = Model();
+    for (int i = 0; i < 30; i++) {
+        model.create_asteroid();
+//        model.player_shoot();
+    }
 
     View view(model);
 
-    while (true) {
+    int counter = 0;
+    while (counter < INT32_MAX) {
         view.draw();
+
+        model.move_all();
+//        model.player_move();
+
+//        for (int i = 0; i < 20; ++i) {
+//        }
+//        if (counter % 5 == 0) {
+//            model.create_asteroid();
+//        }
+
+        if (counter % 5 == 0) {
+            model.player_rotate(DIRECTION_RIGHT);
+        }
+        model.player_shoot();
+
+        std::cout << model.get_asteroids().size() << " " << model.get_bullets().size() << std::endl;
+
+        counter++;
     }
 
+//    delete[] View::textures;
     return 0;
 }

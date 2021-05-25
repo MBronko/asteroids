@@ -15,15 +15,11 @@ private:
 public:
     Player();
 
-    explicit Player(sf::Texture texture);
-
     void move() override;
 
     void rotate(int dir);
 
     void shoot(std::vector<Bullet> &bullets);
-
-    void draw(sf::RenderWindow *win) override;
 };
 
 

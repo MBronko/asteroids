@@ -1,14 +1,15 @@
 #include "../common.h"
 #include "../utils.h"
 #include "player.h"
+#include "../components/view.h"
 
-Player::Player(sf::Texture texture) {
+Player::Player() {
     pos = {WIDTH_CENTER, HEIGHT_CENTER};
     rotation = ROTATION_UP;
     radius = PLAYER_RADIUS;
 
 //    sf::Texture texture;
-    sprite.setTexture(texture);
+    sprite.setTexture(textures[0]);
 }
 
 void Player::move() {
@@ -26,14 +27,5 @@ void Player::rotate(int dir) {
 }
 
 void Player::shoot(std::vector<Bullet> &bullets) {
-    bullets.emplace_back(pos, rotate_pos({BULLET_VELOCITY, 0}, rotation));
+    bullets.emplace_back(Bullet(pos, rotate_pos({BULLET_VELOCITY, 0}, rotation)));
 }
-
-void Player::draw(sf::RenderWindow *win) {
-    sprite.setPosition(top_left_corner(pos));
-    sprite.setRotation((float)rotation);
-
-    win->draw(sprite);
-}
-
-Player::Player() = default;

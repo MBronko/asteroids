@@ -13,6 +13,8 @@ position rotate_pos(position pos, double degree);
 
 double random_range(double min, double max);
 
+//bool out_of_bounds(position pos);
+
 position velocity_towards_center(position pos);
 
 #define shorten_rotation(x) (x<0?x+360:(x>=360?x-360:x))

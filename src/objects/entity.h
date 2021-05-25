@@ -25,7 +25,7 @@ public:
 
     double get_radius() const;
 
-    virtual void draw(sf::RenderWindow *win) = 0;
+    void draw(sf::RenderWindow *win);
 };
 
 class Flying_entity : public Entity {
@@ -40,8 +40,6 @@ public:
 class Bullet : public Flying_entity {
 public:
     Bullet(position pos, position velocity);
-
-    void draw(sf::RenderWindow *win) override;
 };
 
 

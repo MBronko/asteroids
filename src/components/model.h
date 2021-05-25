@@ -17,7 +17,9 @@ private:
     int score = 0;
     Player player;
     std::vector<Bullet> bullets = {};
-    std::vector<std::shared_ptr<Asteroid>> asteroids = {};
+
+//    std::vector<std::shared_ptr<Asteroid>> asteroids = {};
+    std::vector<Asteroid*> asteroids = {};
 
 
 public:
@@ -27,13 +29,18 @@ public:
 
     void move_all();
 
-    void move_player();
+    void player_move();
+
+    void player_shoot();
+
+    void player_rotate(int rot);
 
     void create_asteroid();
 
     std::vector<Bullet> &get_bullets();
 
-    std::vector<std::shared_ptr<Asteroid>> &get_asteroids();
+//    std::vector<std::shared_ptr<Asteroid>> &get_asteroids();
+    std::vector<Asteroid*> &get_asteroids();
 
     Player &get_player();
 
