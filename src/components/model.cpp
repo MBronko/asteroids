@@ -10,34 +10,34 @@ Model::Model() {
 }
 
 void Model::check_collides() {
-    for (auto &asteroid : asteroids) {
-        if (objects_overlap(player.get_pos(), player.get_radius(), asteroid->get_pos(), asteroid->get_radius())) {
-            game_state = ENDED_LOSE;
-            return;
-        }
-    }
+//    for (auto &asteroid : asteroids) {
+//        if (objects_overlap(player.get_pos(), player.get_radius(), asteroid->get_pos(), asteroid->get_radius())) {
+//            game_state = ENDED_LOSE;
+//            return;
+//        }
+//    }
 
-//    asteroids.erase(std::remove_if(asteroids.begin(), asteroids.end(), [](Asteroid *o) { return o->out_of_bounds(); }),
-//                    asteroids.end());
-//
-//    bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](Bullet &o) { return o.out_of_bounds(); }),
-//                  bullets.end());
-//
+    asteroids.erase(std::remove_if(asteroids.begin(), asteroids.end(), [](Asteroid *o) { return o->out_of_bounds(); }),
+                    asteroids.end());
 
-    for (auto asteroid = asteroids.begin(); asteroid != asteroids.end();) {
-        if ((*asteroid)->out_of_bounds()) {
-            asteroid = asteroids.erase(asteroid);
-        } else {
-            asteroid++;
-        }
-    }
-    for (auto bullet = bullets.begin(); bullet != bullets.end();) {
-        if (bullet->out_of_bounds()) {
-            bullet = bullets.erase(bullet);
-        } else {
-            bullet++;
-        }
-    }
+    bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](Bullet &o) { return o.out_of_bounds(); }),
+                  bullets.end());
+
+
+//    for (auto asteroid = asteroids.begin(); asteroid != asteroids.end();) {
+//        if ((*asteroid)->out_of_bounds()) {
+//            asteroid = asteroids.erase(asteroid);
+//        } else {
+//            asteroid++;
+//        }
+//    }
+//    for (auto bullet = bullets.begin(); bullet != bullets.end();) {
+//        if (bullet->out_of_bounds()) {
+//            bullet = bullets.erase(bullet);
+//        } else {
+//            bullet++;
+//        }
+//    }
 
     for (auto bullet = bullets.begin(); bullet != bullets.end();) {
         bool inc = true;
@@ -45,8 +45,8 @@ void Model::check_collides() {
             if (objects_overlap(bullet->get_pos(), bullet->get_radius(), (*asteroid)->get_pos(),
                                 (*asteroid)->get_radius())) {
                 auto new_asteroids = (*asteroid)->create_new_objects();
-//                asteroids.insert(asteroids.end(), new_asteroids.begin(), new_asteroids.end());
-                asteroid = asteroids.erase(asteroid);
+                asteroids.insert(asteroids.end(), new_asteroids.begin(), new_asteroids.end());
+                asteroids.erase(asteroid);
                 bullet = bullets.erase(bullet);
                 inc = false;
                 break;

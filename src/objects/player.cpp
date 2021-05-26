@@ -18,8 +18,10 @@ void Player::move() {
     pos.x += shift.x;
     pos.y += shift.y;
 
-    pos.x = stay_in_bounds(0, pos.x, WIDTH);
-    pos.y = stay_in_bounds(0, pos.y, HEIGHT);
+//    pos.x = stay_in_bounds(0, pos.x, WIDTH);
+//    pos.y = stay_in_bounds(0, pos.y, HEIGHT);
+    pos.x = pos.x > WIDTH ? WIDTH - pos.x : pos.x < 0 ? pos.x + WIDTH : pos.x;
+    pos.y = pos.y > HEIGHT ? HEIGHT - pos.y : pos.y < 0 ? pos.y + HEIGHT : pos.y;
 }
 
 void Player::rotate(int dir) {

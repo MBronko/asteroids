@@ -11,14 +11,14 @@ class View {
 private:
     Model &model;
 
-    sf::RenderWindow *win;
-
 public:
     explicit View(Model &model);
 
     void draw();
 
     ~View();
+
+    sf::RenderWindow *win;
 };
 
 
