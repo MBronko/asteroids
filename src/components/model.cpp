@@ -45,8 +45,8 @@ void Model::check_collides() {
             if (objects_overlap(bullet->get_pos(), bullet->get_radius(), (*asteroid)->get_pos(),
                                 (*asteroid)->get_radius())) {
                 auto new_asteroids = (*asteroid)->create_new_objects();
-                asteroids.insert(asteroids.end(), new_asteroids.begin(), new_asteroids.end());
                 asteroids.erase(asteroid);
+                asteroids.insert(asteroids.end(), new_asteroids.begin(), new_asteroids.end());
                 bullet = bullets.erase(bullet);
                 inc = false;
                 break;
