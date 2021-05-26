@@ -4,12 +4,10 @@
 #include "../components/view.h"
 
 Player::Player() {
-    pos = {WIDTH_CENTER, HEIGHT_CENTER};
-    rotation = ROTATION_UP;
     radius = PLAYER_RADIUS;
-
-//    sf::Texture texture;
     sprite.setTexture(textures[0]);
+
+    reset();
 }
 
 void Player::move() {
@@ -18,8 +16,6 @@ void Player::move() {
     pos.x += shift.x;
     pos.y += shift.y;
 
-//    pos.x = stay_in_bounds(0, pos.x, WIDTH);
-//    pos.y = stay_in_bounds(0, pos.y, HEIGHT);
     pos.x = pos.x > WIDTH ? WIDTH - pos.x : pos.x < 0 ? pos.x + WIDTH : pos.x;
     pos.y = pos.y > HEIGHT ? HEIGHT - pos.y : pos.y < 0 ? pos.y + HEIGHT : pos.y;
 }
@@ -30,4 +26,10 @@ void Player::rotate(int dir) {
 
 void Player::shoot(std::vector<Bullet> &bullets) {
     bullets.emplace_back(Bullet(pos, rotate_pos({BULLET_VELOCITY, 0}, rotation)));
+}
+
+void Player::reset() {
+    pos = {WIDTH_CENTER, HEIGHT_CENTER};
+    rotation = ROTATION_UP;
+    invincible = PLAYER_INVINCIBLE_TIME;
 }

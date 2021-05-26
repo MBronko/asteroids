@@ -14,10 +14,12 @@ View::View(Model *model) : model(model) {
     win->setFramerateLimit(FRAMERATE_LIMIT);
 }
 
-void View::draw() {
+void View::draw() const {
     win->clear();
 
-    model->get_player().draw(win);
+    if (model->get_game_state() == RUNNING && model->get_player().invincible/(FRAMERATE_LIMIT/4) % 2 == 0){
+        model->get_player().draw(win);
+    }
 
     for (auto &asteroid : model->get_asteroids()) {
         asteroid->draw(win);

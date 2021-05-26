@@ -10,12 +10,18 @@ Model::Model() {
 }
 
 void Model::check_collides() {
-//    for (auto &asteroid : asteroids) {
-//        if (objects_overlap(player.get_pos(), player.get_radius(), asteroid->get_pos(), asteroid->get_radius())) {
-//            game_state = ENDED_LOSE;
-//            return;
-//        }
-//    }
+    if (game_state == RUNNING && player.invincible == 0) {
+        for (auto &asteroid : asteroids) {
+            if (objects_overlap(player.get_pos(), player.get_radius(), asteroid->get_pos(), asteroid->get_radius())) {
+                if (player.lives == 0) {
+                    game_state = ENDED_LOSE;
+                } else {
+                    player.reset();
+                    player.lives--;
+                }
+            }
+        }
+    }
 
     asteroids.erase(std::remove_if(asteroids.begin(), asteroids.end(), [](Asteroid *o) { return o->out_of_bounds(); }),
                     asteroids.end());

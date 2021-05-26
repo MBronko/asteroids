@@ -13,7 +13,7 @@ enum GameState {
 
 class Model {
 private:
-    GameState game_state = MENU;
+    GameState game_state = RUNNING;
     int score = 0;
     Player player;
     std::vector<Bullet> bullets = {};

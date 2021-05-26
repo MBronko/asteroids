@@ -12,7 +12,7 @@ class View {
 public:
     explicit View(Model *model);
 
-    void draw();
+    void draw() const;
 
     ~View();
 

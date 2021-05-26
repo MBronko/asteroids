@@ -22,6 +22,8 @@
 
 #define PLAYER_ROTATION_SPAN 4
 #define PLAYER_STEP 9
+#define PLAYER_INITIAL_LIVES 1
+#define PLAYER_INVINCIBLE_TIME 200
 
 #define PLAYER_RADIUS 10
 #define BULLET_RADIUS 1
@@ -44,7 +46,9 @@
 
 #define top_left_corner(pos) pos.x-TEXTURE_CENTER, pos.y-TEXTURE_CENTER
 
-#define TEXTURE_PATH (std::string)"../src/textures/"
+#define TEXTURE_PATH (std::string)"../src/textures/" // debug
+//#define TEXTURE_PATH (std::string)"./textures/"    // normal
+
 #define FRAMERATE_LIMIT 60
 
 struct position{
