@@ -2,13 +2,13 @@
 #include "../common.h"
 #include "SFML/Graphics.hpp"
 
-// :weary: ill leave it at that at this moment
+// im not proud of this
 sf::Texture textures[5];
 
 
 View::View(Model *model) : model(model) {
     win = new sf::RenderWindow();
-    win->create(sf::VideoMode(WIDTH, HEIGHT), "Asteroids", sf::Style::Close | sf::Style::Titlebar);
+    win->create(sf::VideoMode(WIDTH, HEIGHT), WINDOW_TITLE, sf::Style::Close | sf::Style::Titlebar);
 
     win->setVerticalSyncEnabled(true);
     win->setFramerateLimit(FRAMERATE_LIMIT);
@@ -17,15 +17,15 @@ View::View(Model *model) : model(model) {
 void View::draw() const {
     win->clear();
 
-    if (model->get_game_state() == RUNNING && model->get_player().invincible/(FRAMERATE_LIMIT/4) % 2 == 0){
-        model->get_player().draw(win);
+    if (model->game_state == RUNNING && model->player.invincible / PLAYER_INVINCIBLE_BLINK_RATE % 2 == 0) {
+        model->player.draw(win);
     }
 
-    for (auto &asteroid : model->get_asteroids()) {
+    for (auto &asteroid : model->asteroids) {
         asteroid->draw(win);
     }
 
-    for (auto &bullet : model->get_bullets()) {
+    for (auto &bullet : model->bullets) {
         bullet.draw(win);
     }
     win->display();

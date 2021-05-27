@@ -8,16 +8,15 @@
 extern sf::Texture textures[5];
 
 class View {
-
 public:
+    sf::RenderWindow *win;
+    Model *model;
+
     explicit View(Model *model);
 
     void draw() const;
 
     ~View();
-
-    sf::RenderWindow *win;
-    Model *model;
 };
 
 

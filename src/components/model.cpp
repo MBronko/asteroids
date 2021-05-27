@@ -1,6 +1,5 @@
 #include "model.h"
 #include "../utils.h"
-#include <iostream>
 #include <algorithm>
 #include <memory>
 #include <vector>
@@ -12,9 +11,9 @@ Model::Model() {
 void Model::check_collides() {
     if (game_state == RUNNING && player.invincible == 0) {
         for (auto &asteroid : asteroids) {
-            if (objects_overlap(player.get_pos(), player.get_radius(), asteroid->get_pos(), asteroid->get_radius())) {
+            if (objects_overlap(player.pos, player.radius, asteroid->pos, asteroid->radius)) {
                 if (player.lives == 0) {
-                    game_state = ENDED_LOSE;
+                    game_state = LOST;
                 } else {
                     player.reset();
                     player.lives--;
@@ -23,33 +22,18 @@ void Model::check_collides() {
         }
     }
 
-    asteroids.erase(std::remove_if(asteroids.begin(), asteroids.end(), [](Asteroid *o) { return o->out_of_bounds(); }),
+    asteroids.erase(std::remove_if(asteroids.begin(), asteroids.end(),
+                                   [](std::shared_ptr<Asteroid> &o) { return o->out_of_bounds(); }),
                     asteroids.end());
 
     bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](Bullet &o) { return o.out_of_bounds(); }),
                   bullets.end());
 
-
-//    for (auto asteroid = asteroids.begin(); asteroid != asteroids.end();) {
-//        if ((*asteroid)->out_of_bounds()) {
-//            asteroid = asteroids.erase(asteroid);
-//        } else {
-//            asteroid++;
-//        }
-//    }
-//    for (auto bullet = bullets.begin(); bullet != bullets.end();) {
-//        if (bullet->out_of_bounds()) {
-//            bullet = bullets.erase(bullet);
-//        } else {
-//            bullet++;
-//        }
-//    }
-
     for (auto bullet = bullets.begin(); bullet != bullets.end();) {
         bool inc = true;
         for (auto asteroid = asteroids.begin(); asteroid != asteroids.end();) {
-            if (objects_overlap(bullet->get_pos(), bullet->get_radius(), (*asteroid)->get_pos(),
-                                (*asteroid)->get_radius())) {
+            if (objects_overlap(bullet->pos, bullet->radius, (*asteroid)->pos,
+                                (*asteroid)->radius)) {
                 auto new_asteroids = (*asteroid)->create_new_objects();
                 asteroids.erase(asteroid);
                 asteroids.insert(asteroids.end(), new_asteroids.begin(), new_asteroids.end());
@@ -100,38 +84,17 @@ void Model::create_asteroid() {
 
     position new_vel = velocity_towards_center(new_pos);
 
-    Asteroid *new_asteroid;
-//    std::shared_ptr<Asteroid> new_asteroid;
-    switch (random() % 3) {
+    std::shared_ptr<Asteroid> new_asteroid;
+    switch (rand() % 3) {
         case 0:
-//            new_asteroid = std::make_shared<Small_asteroid>(Small_asteroid(new_pos, new_vel));
-            new_asteroid = new Small_asteroid(new_pos, new_vel);
+            new_asteroid = std::make_shared<Small_asteroid>(Small_asteroid(new_pos, new_vel));
             break;
         case 1:
-            new_asteroid = new Medium_asteroid(new_pos, new_vel);
+            new_asteroid = std::make_shared<Medium_asteroid>(Medium_asteroid(new_pos, new_vel));
             break;
         default:
-            new_asteroid = new Big_asteroid(new_pos, new_vel);
+            new_asteroid = std::make_shared<Big_asteroid>(Big_asteroid(new_pos, new_vel));
             break;
     }
     asteroids.push_back(new_asteroid);
 }
-
-
-std::vector<Bullet> &Model::get_bullets() {
-    return bullets;
-}
-
-std::vector<Asteroid *> &Model::get_asteroids() {
-//    std::vector<std::shared_ptr<Asteroid>> &Model::get_asteroids() {
-    return asteroids;
-}
-
-Player &Model::get_player() {
-    return player;
-}
-
-GameState Model::get_game_state() {
-    return game_state;
-}
-

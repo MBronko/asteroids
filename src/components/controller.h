@@ -17,7 +17,6 @@ public:
     Controller(Model *model, View *view);
 
     void run();
-
 };
 
 

@@ -19,6 +19,8 @@ position velocity_towards_center(position pos);
 
 #define shorten_rotation(x) (x<0?x+360:(x>=360?x-360:x))
 
-#define stay_in_bounds(min_val, x, max_val) (std::max(min_val * 1.0, std::min(max_val * 1.0, x * 1.0)))
+#define modulo(x, n, cmd) if(x % n == 0)cmd
+
+#define times(n, cmd) for(int i = 0; i < n; i++)cmd
 
 #endif

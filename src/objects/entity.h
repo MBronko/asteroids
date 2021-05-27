@@ -17,21 +17,12 @@ public:
 
     bool out_of_bounds() const;
 
-    double get_x() const;
-
-    double get_y() const;
-
-    position get_pos() const;
-
-    double get_radius() const;
-
     void draw(sf::RenderWindow *win);
 };
 
 class Flying_entity : public Entity {
 public:
     position velocity = {};
-
     double rotation_span = 0;
 
     Flying_entity();

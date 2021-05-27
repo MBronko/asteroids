@@ -8,21 +8,17 @@
 #include "../objects/asteroid.h"
 
 enum GameState {
-    MENU, RUNNING, ENDED_LOSE, ENDED_WIN
+    MENU, RUNNING, LOST
 };
 
 class Model {
-private:
+public:
+    std::vector<std::shared_ptr<Asteroid>> asteroids = {};
+    std::vector<Bullet> bullets = {};
+    Player player;
     GameState game_state = RUNNING;
     int score = 0;
-    Player player;
-    std::vector<Bullet> bullets = {};
 
-//    std::vector<std::shared_ptr<Asteroid>> asteroids = {};
-    std::vector<Asteroid*> asteroids = {};
-
-
-public:
     Model();
 
     void check_collides();
@@ -36,15 +32,6 @@ public:
     void player_rotate(int rot);
 
     void create_asteroid();
-
-    std::vector<Bullet> &get_bullets();
-
-//    std::vector<std::shared_ptr<Asteroid>> &get_asteroids();
-    std::vector<Asteroid*> &get_asteroids();
-
-    Player &get_player();
-
-    GameState get_game_state();
 };
 
 

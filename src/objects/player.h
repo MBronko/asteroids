@@ -7,8 +7,6 @@
 
 
 class Player : public Entity {
-private:
-
 public:
     int lives = PLAYER_INITIAL_LIVES;
     int invincible = 0;

@@ -1,36 +1,18 @@
 #include "entity.h"
 #include "../components/view.h"
 #include "../utils.h"
-//
+
 bool Entity::out_of_bounds() const {
     double x = pos.x;
     double y = pos.y;
 
-    return x < 0 || x > WIDTH || y < 0 || x > HEIGHT;
-}
-
-double Entity::get_x() const {
-    return pos.x;
-}
-
-double Entity::get_y() const {
-    return pos.y;
-}
-
-position Entity::get_pos() const {
-    return pos;
-}
-
-double Entity::get_radius() const {
-    return radius;
+    return x < 0 || x > WIDTH || y < 0 || y > HEIGHT;
 }
 
 void Entity::draw(sf::RenderWindow *win) {
-//    sprite.setOrigin(TEXTURE_CENTER, TEXTURE_CENTER);
-//    sprite.setPosition(0, 0);
     sprite.setOrigin(TEXTURE_CENTER, TEXTURE_CENTER);
-    sprite.setPosition((float)pos.x, (float)pos.y);
-    sprite.setRotation((float)rotation);
+    sprite.setPosition((float) pos.x, (float) pos.y);
+    sprite.setRotation((float) rotation);
 
     win->draw(sprite);
 }
@@ -42,7 +24,7 @@ void Flying_entity::move() {
 }
 
 Flying_entity::Flying_entity() {
-    rotation = (int)(random() % 360);
+    rotation = (int) (rand() % 360);
 }
 
 Bullet::Bullet(position pos, position velocity) {

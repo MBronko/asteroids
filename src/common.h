@@ -1,18 +1,17 @@
 #ifndef ASTEROIDS_COMMON_H
 #define ASTEROIDS_COMMON_H
 
+#define WINDOW_TITLE "Asteroids"
 #define WIDTH 1000
 #define HEIGHT 1000
+#define FRAMERATE_LIMIT 60
 
 #define WIDTH_CENTER (WIDTH*1.0/2)
 #define HEIGHT_CENTER (HEIGHT*1.0/2)
 
 #define SPAWN_AREA_SIZE 200
 
-#define ROTATION_RIGHT 0
 #define ROTATION_UP 270
-#define ROTATION_LEFT 180
-#define ROTATION_DOWN 90
 
 #define DIRECTION_LEFT -1
 #define DIRECTION_RIGHT 1
@@ -24,6 +23,7 @@
 #define PLAYER_STEP 9
 #define PLAYER_INITIAL_LIVES 1
 #define PLAYER_INVINCIBLE_TIME 200
+#define PLAYER_INVINCIBLE_BLINK_RATE (FRAMERATE_LIMIT/4)
 
 #define PLAYER_RADIUS 10
 #define BULLET_RADIUS 1
@@ -44,14 +44,11 @@
 #define TEXTURE_SIZE 50
 #define TEXTURE_CENTER TEXTURE_SIZE*1.0/2
 
-#define top_left_corner(pos) pos.x-TEXTURE_CENTER, pos.y-TEXTURE_CENTER
-
 #define TEXTURE_PATH (std::string)"../src/textures/" // debug
 //#define TEXTURE_PATH (std::string)"./textures/"    // normal
 
-#define FRAMERATE_LIMIT 60
 
-struct position{
+struct position {
     double x;
     double y;
 };

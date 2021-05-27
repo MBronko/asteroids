@@ -7,9 +7,6 @@
 #include "components/view.h"
 #include "components/controller.h"
 
-#define mod(x, do) if(counter % x == 0){do;}
-#define times(x, do) for(int i = 0; i < x; i++){do;}
-
 int main() {
     srand(time(nullptr));
 
