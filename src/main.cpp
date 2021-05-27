@@ -1,6 +1,5 @@
 #include <iostream>
 #include "objects/entity.h"
-#include "utils.h"
 #include <ctime>
 #include <cmath>
 #include "components/model.h"

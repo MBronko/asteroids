@@ -52,6 +52,8 @@ void Model::check_collides() {
 }
 
 void Model::move_all() {
+    player.move();
+
     for (auto &asteroid : asteroids) {
         asteroid->move();
     }
@@ -63,8 +65,8 @@ void Model::move_all() {
     check_collides();
 }
 
-void Model::player_move() {
-    player.move();
+void Model::player_accelerate() {
+    player.accelerate();
 }
 
 void Model::player_shoot() {
@@ -82,7 +84,6 @@ void Model::create_asteroid() {
     new_y = new_y < SPAWN_AREA_SIZE ? new_y : new_y + (HEIGHT - 2 * SPAWN_AREA_SIZE);
 
     position new_pos = {new_x, new_y};
-
     position new_vel = velocity_towards_center(new_pos);
 
     std::shared_ptr<Asteroid> new_asteroid;

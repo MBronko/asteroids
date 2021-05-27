@@ -23,12 +23,27 @@ int signum(double number) {
     return number < 0 ? -1 : 1;
 }
 
+int random_sign() {
+    int num = rand() % 2;
+    return num == 0 ? -1 : 1;
+}
+
 position rotate_pos(position pos, double degree) {
     double rad = to_radians(degree);
 
     double x = pos.x * std::cos(rad) - pos.y * std::sin(rad);
     double y = pos.y * std::cos(rad) + pos.x * std::sin(rad);
 
+    return {x, y};
+}
+
+double calculate_velocity(position pos) {
+    return std::sqrt(pos.x * pos.x + pos.y * pos.y);
+}
+
+position random_asteroid_velocity() {
+    double x = random_sign() * random_range(MIN_ASTEROID_VELOCITY, MAX_ASTEROID_VELOCITY);
+    double y = random_sign() * random_range(MIN_ASTEROID_VELOCITY, MAX_ASTEROID_VELOCITY);
     return {x, y};
 }
 
@@ -45,5 +60,3 @@ position velocity_towards_center(position pos) {
 
     return rotate_pos(vel, shorten_rotation(to_degree(new_rotation) + rotation_offset));
 }
-
-

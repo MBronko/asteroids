@@ -15,6 +15,8 @@ public:
 
     void move() override;
 
+    void accelerate();
+
     void rotate(int dir);
 
     void shoot(std::vector<Bullet> &bullets);

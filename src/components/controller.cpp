@@ -16,7 +16,7 @@ void Controller::run() {
             if (event.type == sf::Event::Closed) {
                 win->close();
             }
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter){
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
                 switch (model->game_state) {
                     case MENU:
                         model->player.reset();
@@ -34,7 +34,7 @@ void Controller::run() {
         }
         if (win->hasFocus() && model->game_state == RUNNING) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-                model->player_move();
+                model->player_accelerate();
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
                 model->player_rotate(DIRECTION_LEFT);

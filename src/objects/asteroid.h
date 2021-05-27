@@ -9,7 +9,7 @@
 #include "entity.h"
 
 
-class Asteroid : public Flying_entity {
+class Asteroid : public Entity {
 public:
     int points = 0;
 

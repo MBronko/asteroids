@@ -9,28 +9,18 @@
 class Entity {
 public:
     position pos = {};
-    double rotation = 0;       // rotation in degrees
+    position velocity = {};
     double radius = 0;
     sf::Sprite sprite;
 
-    virtual void move() = 0;
+    virtual void move();
 
     bool out_of_bounds() const;
 
     void draw(sf::RenderWindow *win);
 };
 
-class Flying_entity : public Entity {
-public:
-    position velocity = {};
-    double rotation_span = 0;
-
-    Flying_entity();
-
-    void move() override;
-};
-
-class Bullet : public Flying_entity {
+class Bullet : public Entity {
 public:
     Bullet(position pos, position velocity);
 };

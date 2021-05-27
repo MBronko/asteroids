@@ -12,19 +12,15 @@ bool Entity::out_of_bounds() const {
 void Entity::draw(sf::RenderWindow *win) {
     sprite.setOrigin(TEXTURE_CENTER, TEXTURE_CENTER);
     sprite.setPosition((float) pos.x, (float) pos.y);
-    sprite.setRotation((float) rotation);
+    sprite.setRotation((float) pos.rotation);
 
     win->draw(sprite);
 }
 
-void Flying_entity::move() {
+void Entity::move() {
     pos.x += velocity.x;
     pos.y += velocity.y;
-    rotation += shorten_rotation(rotation_span);
-}
-
-Flying_entity::Flying_entity() {
-    rotation = (int) (rand() % 360);
+    pos.rotation = shorten_rotation(pos.rotation + velocity.rotation);
 }
 
 Bullet::Bullet(position pos, position velocity) {

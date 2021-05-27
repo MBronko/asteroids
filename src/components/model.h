@@ -26,7 +26,7 @@ public:
 
     void move_all();
 
-    void player_move();
+    void player_accelerate();
 
     void player_shoot();
 

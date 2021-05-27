@@ -15,7 +15,13 @@ double random_range(double min, double max);
 
 int signum(double number);
 
+int random_sign();
+
 position velocity_towards_center(position pos);
+
+double calculate_velocity(position pos);
+
+position random_asteroid_velocity();
 
 #define shorten_rotation(x) (x<0?x+360:(x>=360?x-360:x))
 

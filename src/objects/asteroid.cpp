@@ -4,11 +4,12 @@
 #include "../utils.h"
 #include "../components/view.h"
 
-Asteroid::Asteroid(position pos, position velocity) : Flying_entity() {
+Asteroid::Asteroid(position pos, position velocity) {
     this->pos = pos;
-    this->velocity = velocity;
+    this->pos.rotation = (int) (rand() % 360);
 
-    rotation_span = signum(random_range(-5, 5)) * random_range(MIN_ASTEROID_ROTATION, MAX_ASTEROID_ROTATION);
+    this->velocity = velocity;
+    this->velocity.rotation = random_sign() * random_range(MIN_ASTEROID_ROTATION, MAX_ASTEROID_ROTATION);
 }
 
 Big_asteroid::Big_asteroid(position pos, position velocity) : Asteroid(pos, velocity) {
@@ -22,9 +23,7 @@ std::vector<std::shared_ptr<Asteroid>> Big_asteroid::create_new_objects() {
     std::vector<std::shared_ptr<Asteroid>> res = {};
 
     for (int i = 0; i < NEW_MEDIUM_ASTEROIDS; i++) {
-        position new_vel = {};
-        new_vel.x = random_range(-MAX_ASTEROID_VELOCITY, MAX_ASTEROID_VELOCITY);
-        new_vel.y = random_range(-MAX_ASTEROID_VELOCITY, MAX_ASTEROID_VELOCITY);
+        position new_vel = random_asteroid_velocity();
 
         position new_pos = {pos.x + new_vel.x, pos.y + new_vel.y};
         res.push_back(std::make_shared<Medium_asteroid>(Medium_asteroid(new_pos, new_vel)));
@@ -43,9 +42,7 @@ std::vector<std::shared_ptr<Asteroid>> Medium_asteroid::create_new_objects() {
     std::vector<std::shared_ptr<Asteroid>> res = {};
 
     for (int i = 0; i < NEW_SMALL_ASTEROIDS; i++) {
-        position new_vel = {};
-        new_vel.x = random_range(-MAX_ASTEROID_VELOCITY, MAX_ASTEROID_VELOCITY);
-        new_vel.y = random_range(-MAX_ASTEROID_VELOCITY, MAX_ASTEROID_VELOCITY);
+        position new_vel = random_asteroid_velocity();
 
         position new_pos = {pos.x + new_vel.x, pos.y + new_vel.y};
         res.push_back(std::make_shared<Small_asteroid>(Small_asteroid(new_pos, new_vel)));

@@ -20,9 +20,9 @@
 #define MAX_ASTEROID_ROTATION 5
 
 #define PLAYER_ROTATION_SPAN 4
-#define PLAYER_STEP 9
+#define PLAYER_ACCELERATION 0.3
 #define PLAYER_INITIAL_LIVES 3
-#define PLAYER_SHOOT_COOLDOWN 2
+#define PLAYER_SHOOT_COOLDOWN 4
 #define PLAYER_INVINCIBLE_TIME 200
 #define PLAYER_INVINCIBLE_BLINK_RATE (FRAMERATE_LIMIT/4)
 
@@ -35,6 +35,7 @@
 #define BULLET_VELOCITY 10
 #define MIN_ASTEROID_VELOCITY 1
 #define MAX_ASTEROID_VELOCITY 5
+#define MAX_PLAYER_VELOCITY 7
 
 // asteroids created aster destroying larger one
 #define NEW_MEDIUM_ASTEROIDS 2
@@ -60,6 +61,7 @@
 struct position {
     double x;
     double y;
+    double rotation = 0;
 };
 
 #endif
