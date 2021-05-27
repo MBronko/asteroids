@@ -1,4 +1,6 @@
 #include "player.h"
+#include <iostream>
+#include <cmath>
 #include "../utils.h"
 #include "../components/view.h"
 
@@ -40,4 +42,20 @@ void Player::reset() {
     pos = {WIDTH_CENTER, HEIGHT_CENTER, ROTATION_UP};
     velocity = {0, 0};
     invincible = PLAYER_INVINCIBLE_TIME;
+}
+
+void Player::decelerate(double vel) {
+    double x = velocity.x;
+    double y = velocity.y;
+    if (x == 0 && y == 0) return;
+
+    position dec = rotate_pos({vel, 0}, shorten_rotation(to_degree(std::atan2(y, x))));
+
+    if ((x - dec.x) * x > 0) {
+        velocity.x -= dec.x;
+    }
+
+    if ((y - dec.y) * y > 0) {
+        velocity.y -= dec.y;
+    }
 }

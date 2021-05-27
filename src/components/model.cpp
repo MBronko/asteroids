@@ -65,16 +65,8 @@ void Model::move_all() {
     check_collides();
 }
 
-void Model::player_accelerate() {
-    player.accelerate();
-}
-
 void Model::player_shoot() {
     player.shoot(bullets);
-}
-
-void Model::player_rotate(int rot) {
-    player.rotate(rot);
 }
 
 void Model::create_asteroid() {

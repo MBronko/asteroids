@@ -26,11 +26,7 @@ public:
 
     void move_all();
 
-    void player_accelerate();
-
     void player_shoot();
-
-    void player_rotate(int rot);
 
     void create_asteroid();
 };

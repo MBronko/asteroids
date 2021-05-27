@@ -51,12 +51,11 @@ position velocity_towards_center(position pos) {
     double x_off = WIDTH_CENTER - pos.x;
     double y_off = HEIGHT_CENTER - pos.y;
 
-    double new_rotation = std::atan(y_off / x_off);
+    double new_rotation = std::atan2(y_off, x_off);
 
     position vel = {random_range(MIN_ASTEROID_VELOCITY, MAX_ASTEROID_VELOCITY), 0};
 
     double rotation_offset = random_range(-NEW_ASTEROID_DEGREE_RANGE, NEW_ASTEROID_DEGREE_RANGE);
-    rotation_offset += x_off < 0 ? 180 : 0;  // flip by 180 degrees if point is on the right side of board
 
     return rotate_pos(vel, shorten_rotation(to_degree(new_rotation) + rotation_offset));
 }

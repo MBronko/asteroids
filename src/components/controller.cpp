@@ -33,14 +33,18 @@ void Controller::run() {
             }
         }
         if (win->hasFocus() && model->game_state == RUNNING) {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-                model->player_accelerate();
-            }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-                model->player_rotate(DIRECTION_LEFT);
+                model->player.rotate(DIRECTION_LEFT);
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+                model->player.accelerate();
+            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+                model->player.decelerate(PLAYER_ACTIVE_DECELERATION);
+            } else {
+                model->player.decelerate(PLAYER_PASSIVE_DECELERATION);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-                model->player_rotate(DIRECTION_RIGHT);
+                model->player.rotate(DIRECTION_RIGHT);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
                 model->player_shoot();

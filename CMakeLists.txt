@@ -19,4 +19,4 @@ find_package(SFML 2 COMPONENTS graphics audio REQUIRED)
 
 target_link_libraries(asteroids sfml-graphics sfml-audio)
 
-#set(CMAKE_CXX_STANDARD_LIBRARIES "-static-libgcc -static-libstdc++")
+#set(CMAKE_CXX_STANDARD_LIBRARIES "-static -pthread -static-libgcc -static-libstdc++")

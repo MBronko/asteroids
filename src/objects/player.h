@@ -17,6 +17,8 @@ public:
 
     void accelerate();
 
+    void decelerate(double a);
+
     void rotate(int dir);
 
     void shoot(std::vector<Bullet> &bullets);
