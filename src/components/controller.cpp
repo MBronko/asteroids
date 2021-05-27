@@ -9,11 +9,27 @@ void Controller::run() {
     sf::Event event{};
     while (win->isOpen()) {
         model->player.invincible = std::max(0, model->player.invincible - 1);
+        model->player.shoot_cooldown = std::max(0, model->player.shoot_cooldown - 1);
         frame_count++;
 
         while (win->pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 win->close();
+            }
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter){
+                switch (model->game_state) {
+                    case MENU:
+                        model->player.reset();
+                        model->lives = PLAYER_INITIAL_LIVES;
+                        model->score = 0;
+                        model->game_state = RUNNING;
+                        break;
+                    case LOST:
+                        model->game_state = MENU;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         if (win->hasFocus() && model->game_state == RUNNING) {

@@ -21,7 +21,8 @@
 
 #define PLAYER_ROTATION_SPAN 4
 #define PLAYER_STEP 9
-#define PLAYER_INITIAL_LIVES 1
+#define PLAYER_INITIAL_LIVES 3
+#define PLAYER_SHOOT_COOLDOWN 2
 #define PLAYER_INVINCIBLE_TIME 200
 #define PLAYER_INVINCIBLE_BLINK_RATE (FRAMERATE_LIMIT/4)
 
@@ -31,13 +32,17 @@
 #define MEDIUM_ASTEROID_RADIUS 15
 #define SMALL_ASTEROID_RADIUS 10
 
-#define BULLET_VELOCITY 5
+#define BULLET_VELOCITY 10
 #define MIN_ASTEROID_VELOCITY 1
 #define MAX_ASTEROID_VELOCITY 5
 
 // asteroids created aster destroying larger one
 #define NEW_MEDIUM_ASTEROIDS 2
 #define NEW_SMALL_ASTEROIDS 3
+
+#define BIG_ASTEROID_POINTS 100
+#define MEDIUM_ASTEROID_POINTS 150
+#define SMALL_ASTEROID_POINTS 200
 
 #define NEW_ASTEROID_DEGREE_RANGE 30
 
@@ -46,6 +51,10 @@
 
 #define TEXTURE_PATH (std::string)"../src/textures/" // debug
 //#define TEXTURE_PATH (std::string)"./textures/"    // normal
+
+#define TEXT_SCORE_SIZE 50
+#define TEXT_MENU_SIZE 80
+#define TEXT_CONTINUE_SIZE 30
 
 
 struct position {

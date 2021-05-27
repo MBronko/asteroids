@@ -11,14 +11,14 @@
 
 class Asteroid : public Flying_entity {
 public:
+    int points = 0;
+
     Asteroid(position pos, position velocity);
 
     virtual std::vector<std::shared_ptr<Asteroid>> create_new_objects() = 0;
 };
 
 class Big_asteroid : public Asteroid {
-private:
-
 public:
     Big_asteroid(position pos, position velocity);
 
@@ -33,8 +33,6 @@ public:
 };
 
 class Small_asteroid : public Asteroid {
-private:
-
 public:
     Small_asteroid(position pos, position velocity);
 

@@ -16,8 +16,9 @@ public:
     std::vector<std::shared_ptr<Asteroid>> asteroids = {};
     std::vector<Bullet> bullets = {};
     Player player;
-    GameState game_state = RUNNING;
+    GameState game_state = MENU;
     int score = 0;
+    int lives = 0;
 
     Model();
 

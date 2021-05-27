@@ -8,8 +8,8 @@
 
 class Player : public Entity {
 public:
-    int lives = PLAYER_INITIAL_LIVES;
     int invincible = 0;
+    int shoot_cooldown = 0;
 
     Player();
 

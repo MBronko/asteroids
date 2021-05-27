@@ -12,11 +12,11 @@ void Model::check_collides() {
     if (game_state == RUNNING && player.invincible == 0) {
         for (auto &asteroid : asteroids) {
             if (objects_overlap(player.pos, player.radius, asteroid->pos, asteroid->radius)) {
-                if (player.lives == 0) {
+                if (lives == 0) {
                     game_state = LOST;
                 } else {
                     player.reset();
-                    player.lives--;
+                    lives--;
                 }
             }
         }
@@ -35,6 +35,7 @@ void Model::check_collides() {
             if (objects_overlap(bullet->pos, bullet->radius, (*asteroid)->pos,
                                 (*asteroid)->radius)) {
                 auto new_asteroids = (*asteroid)->create_new_objects();
+                score += (*asteroid)->points;
                 asteroids.erase(asteroid);
                 asteroids.insert(asteroids.end(), new_asteroids.begin(), new_asteroids.end());
                 bullet = bullets.erase(bullet);

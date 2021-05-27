@@ -13,6 +13,7 @@ Asteroid::Asteroid(position pos, position velocity) : Flying_entity() {
 
 Big_asteroid::Big_asteroid(position pos, position velocity) : Asteroid(pos, velocity) {
     this->radius = BIG_ASTEROID_RADIUS;
+    this->points = BIG_ASTEROID_POINTS;
 
     sprite.setTexture(textures[1]);
 }
@@ -33,6 +34,7 @@ std::vector<std::shared_ptr<Asteroid>> Big_asteroid::create_new_objects() {
 
 Medium_asteroid::Medium_asteroid(position pos, position velocity) : Asteroid(pos, velocity) {
     this->radius = MEDIUM_ASTEROID_RADIUS;
+    this->points = MEDIUM_ASTEROID_POINTS;
 
     sprite.setTexture(textures[2]);
 }
@@ -53,6 +55,7 @@ std::vector<std::shared_ptr<Asteroid>> Medium_asteroid::create_new_objects() {
 
 Small_asteroid::Small_asteroid(position pos, position velocity) : Asteroid(pos, velocity) {
     this->radius = SMALL_ASTEROID_RADIUS;
+    this->points = SMALL_ASTEROID_POINTS;
 
     sprite.setTexture(textures[3]);
 }

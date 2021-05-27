@@ -24,7 +24,10 @@ void Player::rotate(int dir) {
 }
 
 void Player::shoot(std::vector<Bullet> &bullets) {
-    bullets.emplace_back(Bullet(pos, rotate_pos({BULLET_VELOCITY, 0}, rotation)));
+    if (shoot_cooldown == 0){
+        bullets.emplace_back(Bullet(pos, rotate_pos({BULLET_VELOCITY, 0}, rotation)));
+        shoot_cooldown = PLAYER_SHOOT_COOLDOWN;
+    }
 }
 
 void Player::reset() {
