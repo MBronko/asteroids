@@ -19,6 +19,7 @@ public:
     GameState game_state = MENU;
     int score = 0;
     int lives = 0;
+    bool is_paused = false;
 
     Model();
 

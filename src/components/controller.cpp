@@ -29,28 +29,33 @@ void Controller::run() {
                         break;
                 }
             }
-        }
-        if (win->hasFocus() && model->game_state == RUNNING) {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-                model->player.rotate(DIRECTION_LEFT);
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-                model->player.accelerate();
-            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-                model->player.decelerate(PLAYER_ACTIVE_DECELERATION);
-            } else {
-                model->player.decelerate(PLAYER_PASSIVE_DECELERATION);
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-                model->player.rotate(DIRECTION_RIGHT);
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-                model->player_shoot();
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P) {
+                model->is_paused = !model->is_paused;
             }
         }
-        modulo(frame_count, 50, model->create_asteroid()); //create asteroid every 50 frames
 
-        model->move_all();
+        if (!model->is_paused) {
+            modulo(frame_count, 50, model->create_asteroid()); //create asteroid every 50 frames
+            if (win->hasFocus() && model->game_state == RUNNING) {
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+                    model->player.rotate(DIRECTION_LEFT);
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+                    model->player.accelerate();
+                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+                    model->player.decelerate(PLAYER_ACTIVE_DECELERATION);
+                } else {
+                    model->player.decelerate(PLAYER_PASSIVE_DECELERATION);
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+                    model->player.rotate(DIRECTION_RIGHT);
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+                    model->player_shoot();
+                }
+            }
+            model->move_all();
+        }
 
         view->draw();
     }

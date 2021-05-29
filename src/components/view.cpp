@@ -53,15 +53,21 @@ void View::draw() {
     text_score.setString("Score: " + std::to_string(model->score));
     switch (model->game_state) {
         case RUNNING:
-            if (model->player.invincible / PLAYER_INVINCIBLE_BLINK_RATE % 2 == 0) {
+            if (model->player.invincible / PLAYER_INVINCIBLE_BLINK_RATE % 2 == 0 || model->is_paused) {
                 model->player.draw(win);
             }
             for (int i = 0; i < model->lives; ++i) {
-                heart_sprite.setPosition(40.0f * (float)i, 40.0f);
+                heart_sprite.setPosition(40.0f * (float) i, 40.0f);
                 win->draw(heart_sprite);
             }
-
             text_score.setPosition(30, 0);
+
+            if (model->is_paused) {
+                text_menu.setString("PAUSE");
+                center_text(text_menu, WIDTH_CENTER, HEIGHT_CENTER - 40);
+                win->draw(text_menu);
+            }
+
             win->draw(text_score);
             break;
         case LOST:

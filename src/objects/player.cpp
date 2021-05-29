@@ -22,7 +22,7 @@ void Player::move() {
     pos.y = pos.y > HEIGHT ? HEIGHT - pos.y : pos.y < 0 ? pos.y + HEIGHT : pos.y;
 }
 
-void Player::accelerate() {
+void Player::accelerate() { // TODO change direction on max speed (doesnt work on small rotations)
     position accel = rotate_pos({PLAYER_ACCELERATION, 0}, pos.rotation);
     if (calculate_velocity({velocity.x + accel.x, velocity.y + accel.y}) < MAX_PLAYER_VELOCITY) {
         velocity.x += accel.x;
