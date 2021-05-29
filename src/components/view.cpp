@@ -18,7 +18,7 @@ View::View(Model *model) : model(model) {
     win->setVerticalSyncEnabled(true);
     win->setFramerateLimit(FRAMERATE_LIMIT);
 
-    font.loadFromFile(TEXTURE_PATH + "Pixellettersfull-BnJ5.ttf");
+    loadFile(font, "Pixellettersfull-BnJ5.ttf");
 
     text_score.setFont(font);
     text_score.setCharacterSize(TEXT_SCORE_SIZE);
@@ -34,7 +34,7 @@ View::View(Model *model) : model(model) {
     text_continue.setString("Press enter to continue");
     center_text(text_continue, WIDTH_CENTER, HEIGHT_CENTER + 60);
 
-    heart_texture.loadFromFile(TEXTURE_PATH + "heart.png");
+    loadFile(heart_texture, "heart.png");
     heart_sprite.setTexture(heart_texture);
     heart_sprite.setScale(2.0f, 2.0f);
 }
@@ -57,7 +57,7 @@ void View::draw() {
                 model->player.draw(win);
             }
             for (int i = 0; i < model->lives; ++i) {
-                heart_sprite.setPosition(40.0f * i, 40.0f);
+                heart_sprite.setPosition(40.0f * (float)i, 40.0f);
                 win->draw(heart_sprite);
             }
 

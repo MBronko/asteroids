@@ -12,6 +12,9 @@ Player::Player() {
 }
 
 void Player::move() {
+    invincible = std::max(0, invincible - 1);
+    shoot_cooldown = std::max(0, shoot_cooldown - 1);
+
     pos.x += velocity.x;
     pos.y += velocity.y;
 

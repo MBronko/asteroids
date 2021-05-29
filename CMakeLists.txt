@@ -3,7 +3,7 @@ project(asteroids)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(asteroids src/main.cpp src/objects/entity.cpp src/objects/entity.h src/components/model.cpp src/components/model.h src/components/view.cpp src/components/view.h src/components/controller.cpp src/components/controller.h src/objects/player.cpp src/objects/player.h src/common.h src/utils.cpp src/utils.h src/objects/asteroid.cpp src/objects/asteroid.h)
+add_executable(asteroids src/main.cpp src/objects/entity.cpp src/components/model.cpp src/components/view.cpp src/components/controller.cpp src/objects/player.cpp src/utils.cpp src/objects/asteroid.cpp)
 
 if (UNIX)
     set ( CMAKE_MODULES_PATH "/usr/share/SFML/cmake/Modules" ${CMAKE_MODULE_PATH})

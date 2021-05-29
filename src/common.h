@@ -52,8 +52,9 @@
 #define TEXTURE_SIZE 50
 #define TEXTURE_CENTER TEXTURE_SIZE*1.0/2
 
-#define TEXTURE_PATH (std::string)"../src/textures/" // debug
-//#define TEXTURE_PATH (std::string)"./textures/"    // normal
+#define TEXTURE_PATH (std::string)"./resources/"
+#define TEXTURE_DEBUG_PATH (std::string)"../src/resources/"
+#define loadFile(x, name) if(!x.loadFromFile(TEXTURE_PATH + name)) x.loadFromFile(TEXTURE_DEBUG_PATH + name)
 
 #define TEXT_SCORE_SIZE 50
 #define TEXT_MENU_SIZE 80

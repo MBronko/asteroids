@@ -8,8 +8,6 @@ Controller::Controller(Model *model, View *view) : model(model), view(view) {
 void Controller::run() {
     sf::Event event{};
     while (win->isOpen()) {
-        model->player.invincible = std::max(0, model->player.invincible - 1);
-        model->player.shoot_cooldown = std::max(0, model->player.shoot_cooldown - 1);
         frame_count++;
 
         while (win->pollEvent(event)) {

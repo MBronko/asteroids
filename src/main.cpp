@@ -9,12 +9,11 @@
 int main() {
     srand(time(nullptr));
 
-    textures[0].loadFromFile(TEXTURE_PATH + "player.png");
-//    textures[0].loadFromFile(TEXTURE_PATH + "debug.png");
-    textures[1].loadFromFile(TEXTURE_PATH + "big_asteroid.png");
-    textures[2].loadFromFile(TEXTURE_PATH + "medium_asteroid.png");
-    textures[3].loadFromFile(TEXTURE_PATH + "small_asteroid.png");
-    textures[4].loadFromFile(TEXTURE_PATH + "bullet.png");
+    std::string texture_filename[5] = {"player.png", "big_asteroid.png", "medium_asteroid.png", "small_asteroid.png",
+                                       "bullet.png"};
+    for (int i = 0; i < 5; ++i) {
+        loadFile(textures[i], texture_filename[i]);
+    }
 
     auto *model = new Model();
     View *view = new View(model);
