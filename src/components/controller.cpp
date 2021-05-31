@@ -34,6 +34,7 @@ void Controller::run() {
             }
         }
 
+        bool passive_decelerate = true;
         if (!model->is_paused) {
             modulo(frame_count, 50, model->create_asteroid()); //create asteroid every 50 frames
             if (win->hasFocus() && model->game_state == RUNNING) {
@@ -42,10 +43,10 @@ void Controller::run() {
                 }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
                     model->player.accelerate();
+                    passive_decelerate = false;
                 } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
                     model->player.decelerate(PLAYER_ACTIVE_DECELERATION);
-                } else {
-                    model->player.decelerate(PLAYER_PASSIVE_DECELERATION);
+                    passive_decelerate = false;
                 }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
                     model->player.rotate(DIRECTION_RIGHT);
@@ -56,6 +57,7 @@ void Controller::run() {
             }
             model->move_all();
         }
+        if (passive_decelerate) model->player.decelerate(PLAYER_PASSIVE_DECELERATION);
 
         view->draw();
     }

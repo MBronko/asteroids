@@ -37,7 +37,7 @@
 #define BULLET_VELOCITY 10
 #define MIN_ASTEROID_VELOCITY 1
 #define MAX_ASTEROID_VELOCITY 5
-#define MAX_PLAYER_VELOCITY 5
+#define MAX_PLAYER_VELOCITY 6
 
 // asteroids created aster destroying larger one
 #define NEW_MEDIUM_ASTEROIDS 2
