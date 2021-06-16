@@ -23,9 +23,9 @@ public:
 
     Model();
 
-    void check_collides();
+    void check_collisions(double delta_time);
 
-    void move_all();
+    void move_all(double delta_time);
 
     void player_shoot();
 

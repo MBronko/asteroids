@@ -8,15 +8,15 @@ Model::Model() {
     player = Player();
 }
 
-void Model::check_collides() {
+void Model::check_collisions(double delta_time) {
     if (game_state == RUNNING && player.invincible == 0) {
         for (auto &asteroid : asteroids) {
             if (objects_overlap(player.pos, player.radius, asteroid->pos, asteroid->radius)) {
                 if (lives == 0) {
                     game_state = LOST;
-                } else {
-                    player.reset();
-                    lives--;
+//                } else {
+//                    player.reset();
+//                    lives--;
                 }
             }
         }
@@ -34,7 +34,7 @@ void Model::check_collides() {
         for (auto asteroid = asteroids.begin(); asteroid != asteroids.end();) {
             if (objects_overlap(bullet->pos, bullet->radius, (*asteroid)->pos,
                                 (*asteroid)->radius)) {
-                auto new_asteroids = (*asteroid)->create_new_objects();
+                auto new_asteroids = (*asteroid)->create_new_objects(delta_time);
                 score += (*asteroid)->points;
                 asteroids.erase(asteroid);
                 asteroids.insert(asteroids.end(), new_asteroids.begin(), new_asteroids.end());
@@ -51,18 +51,16 @@ void Model::check_collides() {
     }
 }
 
-void Model::move_all() {
-    player.move();
+void Model::move_all(double delta_time) {
+    player.move(delta_time);
 
     for (auto &asteroid : asteroids) {
-        asteroid->move();
+        asteroid->move(delta_time);
     }
 
     for (auto &bullet : bullets) {
-        bullet.move();
+        bullet.move(delta_time);
     }
-
-    check_collides();
 }
 
 void Model::player_shoot() {

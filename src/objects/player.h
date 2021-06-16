@@ -8,18 +8,18 @@
 
 class Player : public Entity {
 public:
-    int invincible = 0;
-    int shoot_cooldown = 0;
+    double invincible = 0;
+    double shoot_cooldown = 0;
 
     Player();
 
-    void move() override;
+    void move(double delta_time) override;
 
-    void accelerate();
+    void accelerate(double delta_time);
 
-    void decelerate(double a);
+    void decelerate(double delta_time, double a);
 
-    void rotate(int dir);
+    void rotate(double delta_time, int dir);
 
     void shoot(std::vector<Bullet> &bullets);
 

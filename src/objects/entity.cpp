@@ -17,10 +17,10 @@ void Entity::draw(sf::RenderWindow *win) {
     win->draw(sprite);
 }
 
-void Entity::move() {
-    pos.x += velocity.x;
-    pos.y += velocity.y;
-    pos.rotation = shorten_rotation(pos.rotation + velocity.rotation);
+void Entity::move(double delta_time) {
+    pos.x += velocity.x * delta_time;
+    pos.y += velocity.y * delta_time;
+    pos.rotation = shorten_rotation(pos.rotation + velocity.rotation * delta_time);
 }
 
 Bullet::Bullet(position pos, position velocity) {

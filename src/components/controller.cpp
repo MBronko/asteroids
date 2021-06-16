@@ -7,8 +7,12 @@ Controller::Controller(Model *model, View *view) : model(model), view(view) {
 
 void Controller::run() {
     sf::Event event{};
+    sf::Clock clock;
+    double new_asteroid_time = 0;
     while (win->isOpen()) {
+        double delta_time = clock.restart().asSeconds();
         frame_count++;
+        new_asteroid_time += delta_time;
 
         while (win->pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
@@ -36,28 +40,32 @@ void Controller::run() {
 
         bool passive_decelerate = true;
         if (!model->is_paused) {
-            modulo(frame_count, 50, model->create_asteroid()); //create asteroid every 50 frames
+            if (new_asteroid_time >= NEW_ASTEROID_SPAWN_RATE){
+                model->create_asteroid();
+                new_asteroid_time = 0;
+            }
             if (win->hasFocus() && model->game_state == RUNNING) {
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-                    model->player.rotate(DIRECTION_LEFT);
-                }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-                    model->player.accelerate();
+                    model->player.accelerate(delta_time);
                     passive_decelerate = false;
                 } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-                    model->player.decelerate(PLAYER_ACTIVE_DECELERATION);
+                    model->player.decelerate(delta_time, PLAYER_ACTIVE_DECELERATION);
                     passive_decelerate = false;
                 }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+                    model->player.rotate(delta_time, DIRECTION_LEFT);
+                }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-                    model->player.rotate(DIRECTION_RIGHT);
+                    model->player.rotate(delta_time, DIRECTION_RIGHT);
                 }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
                     model->player_shoot();
                 }
             }
-            model->move_all();
+            model->move_all(delta_time);
+            model->check_collisions(delta_time);
         }
-        if (passive_decelerate) model->player.decelerate(PLAYER_PASSIVE_DECELERATION);
+        if (passive_decelerate) model->player.decelerate(delta_time, PLAYER_PASSIVE_DECELERATION);
 
         view->draw();
     }

@@ -13,7 +13,7 @@ public:
     double radius = 0;
     sf::Sprite sprite;
 
-    virtual void move();
+    virtual void move(double delta_time);
 
     bool out_of_bounds() const;
 

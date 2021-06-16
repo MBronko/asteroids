@@ -53,7 +53,7 @@ void View::draw() {
     text_score.setString("Score: " + std::to_string(model->score));
     switch (model->game_state) {
         case RUNNING:
-            if (model->player.invincible / PLAYER_INVINCIBLE_BLINK_RATE % 2 == 0 || model->is_paused) {
+            if ((int)(model->player.invincible / PLAYER_INVINCIBLE_BLINK_RATE) % 2 == 0 || model->is_paused) {
                 model->player.draw(win);
             }
             for (int i = 0; i < model->lives; ++i) {
